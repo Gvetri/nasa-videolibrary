@@ -1,0 +1,19 @@
+
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+_
+/.github/workflows/gradle-wrapper-validation.yml,1/0/10a0aa7c79918fe6c4c32f5a6f488725dad8790d
+Y
+).github/ISSUE_TEMPLATE/feature_request.md,6/7/67c0231b0ea83057a5f5c051eb28641a29af34a6
+T
+$.github/ISSUE_TEMPLATE/bug_report.md,a/0/a03585ab89eed5e0782a1875b2d8153b97865d30
+D
+app/build.gradle.kts,d/2/d2a4383452aad84a18429a5844d31330a012a9e6
+†
+Vlibrary-kotlin/src/main/java/com/ncorti/kotlin/template/library/FactorialCalculator.kt,8/5/85b8d310ef04fbb2633865252230e298a4aab3ad
+p
+@app/src/main/java/com/ncorti/kotlin/template/app/MainActivity.kt,f/b/fb63adce11df294b4e20ad31f5f084fd911e4529
+Œ
+\library-android/src/main/java/com/ncorti/kotlin/template/library/android/NotificationUtil.kt,f/f/ffc68fb7d8a97eb1d2b2333b33e7cc7f878be4b8
+{
+Kapp/src/androidTest/java/com/ncorti/kotlin/template/app/MainActivityTest.kt,9/9/992c2295ac683b626622bfb76f24723e027daaef
