@@ -1,3 +1,4 @@
+include(":home")
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
@@ -21,6 +22,7 @@ rootProject.name = ("kotlin-android-template")
 
 include(
     "app",
-    "library-android",
-    "library-kotlin"
+    "core",
+    "network",
+    "home"
 )
