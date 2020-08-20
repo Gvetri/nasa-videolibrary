@@ -47,8 +47,9 @@ dependencies {
 
     implementation(project(":core"))
     implementation(project(":home"))
+    implementation(project(":download"))
+    implementation(project(":settings"))
     implementation(project(":network"))
-    implementation(LOTTIE_LIBRARY)
     implementAndroidDebugLibraries()
     implementAndroidDefaultLibraries()
     implementTestLibraries()

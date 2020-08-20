@@ -47,8 +47,6 @@ H
 network/build.gradle.kts,9/b/9bb51bc0c825dd9cd9f3865faf922e420c2a1dcd
 E
 core/build.gradle.kts,d/7/d72846b7b418aa17de692d1ccf924c738cf8dbe5
-t
-Dapp/src/main/java/com/gvetri/kotlin/videolibrary/app/HomeFragment.kt,8/9/89771817e7e757e4e7e62055f141f297d4da4e74
 x
 Happ/src/main/java/com/gvetri/kotlin/videolibrary/app/DownloadFragment.kt,0/7/0778d19ed97ddf485434d7f703599bd60ed19e11
 ƒ
@@ -59,3 +57,11 @@ Qapp/src/androidTest/java/com/gvetri/kotlin/videolibrary/app/SplashFragmentTest.
 -buildSrc/src/main/java/DependencyFunctions.kt,7/8/78a6649bb504d0c8ec92c34ff858eaefc4b09a1d
 v
 Fapp/src/main/java/com/gvetri/kotlin/videolibrary/app/SplashFragment.kt,9/0/90571d19472770dcab314ba0b63d0e1a0348d943
+G
+home/consumer-rules.pro,d/c/dc0a450505e3b99d139a8f5d81874bade26f57e5
+G
+home/proguard-rules.pro,0/a/0aac9d1451894df4733185243daef0e4eb20504b
+E
+home/build.gradle.kts,5/0/505324ff0cc94af273a4a4290cedcc3de2b121c3
+~
+Nhome/src/main/java/com/gvetri/kotlin/videolibrary/home/android/HomeFragment.kt,2/a/2af28cd4962e72786ea87faf52bb9c62af4d5331

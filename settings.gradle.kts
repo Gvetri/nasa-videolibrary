@@ -1,4 +1,3 @@
-include(":home")
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
@@ -24,5 +23,7 @@ include(
     "app",
     "core",
     "network",
-    "home"
+    "home",
+    "download",
+    "settings"
 )

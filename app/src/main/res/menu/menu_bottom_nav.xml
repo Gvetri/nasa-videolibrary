@@ -6,8 +6,13 @@
         android:title="@string/all_feature_name_home" />
 
     <item
-        android:id="@+id/downloadFragment"
+        android:id="@+id/download_graph"
         android:icon="@drawable/all_download_icon_arrow_black"
         android:title="@string/all_feature_name_downloads" />
+
+    <item
+        android:id="@+id/settings_graph"
+        android:icon="@drawable/all_settings_icon_black"
+        android:title="@string/all_feature_name_settings" />
 
 </menu>

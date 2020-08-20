@@ -1,4 +1,4 @@
-package com.gvetri.kotlin.videolibrary.app
+package com.gvetri.kotlin.videolibrary.download.android
 
 import android.os.Bundle
 import android.view.LayoutInflater
