@@ -14,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_fileName="construction_animation.json"
         app:lottie_loop="true" />
 

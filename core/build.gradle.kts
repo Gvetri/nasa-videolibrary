@@ -39,6 +39,7 @@ android {
     lintOptions {
         isWarningsAsErrors = true
         isAbortOnError = true
+        disable = setOf("VectorPath")
     }
 }
 

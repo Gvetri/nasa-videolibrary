@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="all_feature_name_home">Home</string>
     <string name="under_construction_message">🚧 Under construction</string>
 </resources>

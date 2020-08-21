@@ -15,8 +15,8 @@ const val KTLINT = "0.37.2"
 const val EXOPLAYER = "2.11.5"
 const val MATERIAL_COMPONENTS = "1.2.0"
 const val NAVIGATION_VERSION = "2.3.0"
-const val FRAGMENT_TESTING = "1.2.4"
 const val LOTTIE = "3.4.1"
+const val FRAGMENT = "1.2.5"
 
 //BUILD PLUGIN VERSION
 const val AGP = "4.0.0"
@@ -31,9 +31,9 @@ const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${APPCOMPAT}"
 const val ANDROIDX_CONSTRAINT_LAYOUT =
     "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT}"
 const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${CORE_KTX}"
-const val ANDROIDX_NAVIGATION_FRAGMENT =
-    "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION"
+const val ANDROIDX_NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION"
 const val ANDROIDX_NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$NAVIGATION_VERSION"
+const val ANDROIDX_FRAGMENT = "androidx.fragment:fragment-ktx:$FRAGMENT"
 
 
 
@@ -54,4 +54,4 @@ const val ANDROIDX_TEST_RUNNER_LIBRARY = "androidx.test:runner:${ANDROIDX_TEST}"
 const val ANDROIDX_TEST_EXT_JUNIT_LIBRARY = "androidx.test.ext:junit:${ANDROIDX_TEST_EXT}"
 const val ESPRESSO_CORE_LIBRARY = "androidx.test.espresso:espresso-core:${ESPRESSO_CORE}"
 const val ANDROIDX_NAVIGATION_TEST_LIBRARY = "androidx.navigation:navigation-testing:${NAVIGATION_VERSION}"
-const val FRAGMENT_TESTING_LIBRARY = "androidx.fragment:fragment-testing:${FRAGMENT_TESTING}"
+const val FRAGMENT_TESTING_LIBRARY = "androidx.fragment:fragment-testing:${FRAGMENT}"

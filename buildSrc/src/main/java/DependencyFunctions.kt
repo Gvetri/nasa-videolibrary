@@ -22,6 +22,7 @@ fun DependencyHandler.implementAndroidDefaultLibraries() {
     add(ANDROID_IMPLEMENTATION, ANDROIDX_NAVIGATION_FRAGMENT)
     add(ANDROID_IMPLEMENTATION, ANDROIDX_NAVIGATION_UI)
     add(ANDROID_IMPLEMENTATION, LOTTIE_LIBRARY)
+    add(ANDROID_IMPLEMENTATION, ANDROIDX_FRAGMENT)
 }
 
 fun DependencyHandler.implementTestLibraries() {

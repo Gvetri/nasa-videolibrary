@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Nasa Video Library</string>
-    <string name="title">This is just a template</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_feature_name_downloads">Downloads</string>
     <string name="all_feature_name_settings">Settings</string>
 </resources>
