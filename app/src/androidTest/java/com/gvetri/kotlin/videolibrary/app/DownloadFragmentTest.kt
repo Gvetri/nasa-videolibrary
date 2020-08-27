@@ -14,7 +14,7 @@ class DownloadFragmentTest {
     @Test
     fun testSplashFragment() {
         launchFragmentInContainer<DownloadFragment>()
-        onView(ViewMatchers.withId(R.id.hello_world_download))
+        onView(ViewMatchers.withId(R.id.constructionAnimation))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }

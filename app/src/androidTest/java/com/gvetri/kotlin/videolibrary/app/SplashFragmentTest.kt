@@ -15,6 +15,6 @@ class SplashFragmentTest {
     @Test
     fun testSplashFragment() {
         launchFragmentInContainer<SplashFragment>()
-        onView(withId(R.id.hello_world)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.rocketAnimation)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
