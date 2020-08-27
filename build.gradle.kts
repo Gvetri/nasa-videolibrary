@@ -1,16 +1,15 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 plugins {
-    id("com.android.application") version BuildPluginsVersion.AGP apply false
-    id("com.android.library") version BuildPluginsVersion.AGP apply false
-    kotlin("android") version BuildPluginsVersion.KOTLIN apply false
-    id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
-    id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
-    id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
+    id("com.android.application") version AGP apply false
+    id("com.android.library") version AGP apply false
+    kotlin("android") version KOTLIN apply false
+    id("io.gitlab.arturbosch.detekt") version DETEKT
+    id("org.jlleitschuh.gradle.ktlint") version KTLINT_PLUGIN
+    id("com.github.ben-manes.versions") version VERSIONS_PLUGIN
 }
 
 allprojects {
-    group = PUBLISHING_GROUP
     repositories {
         google()
         mavenCentral()
@@ -26,7 +25,7 @@ subprojects {
 
     ktlint {
         debug.set(false)
-        version.set(Versions.KTLINT)
+        version.set(KTLINT)
         verbose.set(true)
         android.set(false)
         outputToConsole.set(true)
@@ -51,6 +50,12 @@ subprojects {
 
 tasks.register("clean", Delete::class.java) {
     delete(rootProject.buildDir)
+}
+buildscript {
+    val kotlin_version by extra("1.4.0")
+    dependencies {
+        "classpath"("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+    }
 }
 
 tasks.withType<DependencyUpdatesTask> {
