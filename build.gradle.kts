@@ -1,5 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-
 plugins {
     id("com.android.application") version AGP apply false
     id("com.android.library") version AGP apply false
@@ -14,6 +12,7 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+        maven { setUrl("https://dl.bintray.com/arrow-kt/arrow-kt/") }
     }
 }
 
@@ -58,7 +57,7 @@ buildscript {
     }
 }
 
-tasks.withType<DependencyUpdatesTask> {
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
     rejectVersionIf {
         isNonStable(candidate.version)
     }

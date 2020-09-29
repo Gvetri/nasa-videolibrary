@@ -4,6 +4,7 @@ const val ANDROID_TEST_IMPLEMENTATION = "androidTestImplementation"
 const val ANDROID_IMPLEMENTATION = "implementation"
 const val ANDROID_DEBUG_IMPLEMENTATION = "debugImplementation"
 const val TEST_IMPLEMENTATION = "testImplementation"
+const val LIBRARY_IMPLEMENTATION = "implementation"
 
 
 fun DependencyHandler.implementAndroidTestLibraries() {
@@ -27,8 +28,15 @@ fun DependencyHandler.implementAndroidDefaultLibraries() {
 
 fun DependencyHandler.implementTestLibraries() {
     add(TEST_IMPLEMENTATION, JUNIT_LIBRARY)
+    add(TEST_IMPLEMENTATION, TRUTH_LIBRARY)
 }
 
-fun DependencyHandler.implementAndroidDebugLibraries(){
-    add(ANDROID_DEBUG_IMPLEMENTATION,FRAGMENT_TESTING_LIBRARY)
+fun DependencyHandler.implementAndroidDebugLibraries() {
+    add(ANDROID_DEBUG_IMPLEMENTATION, FRAGMENT_TESTING_LIBRARY)
+}
+
+//TODO Ver porque esto no funciona
+fun DependencyHandler.implementLibraryImplementation() {
+    add(ARROW_CORE, ARROW_VERSION)
+    add(ARROW_SYNTAX, ARROW_VERSION)
 }

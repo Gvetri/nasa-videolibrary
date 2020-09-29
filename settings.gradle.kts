@@ -1,3 +1,6 @@
+include(":model")
+include(":testing")
+include(":datasource")
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
@@ -17,7 +20,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+rootProject.name = "com.gvetri.kotlin.videolibrary"
 
 include(
     "app",

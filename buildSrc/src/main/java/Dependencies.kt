@@ -17,6 +17,13 @@ const val MATERIAL_COMPONENTS = "1.2.0"
 const val NAVIGATION_VERSION = "2.3.0"
 const val LOTTIE = "3.4.1"
 const val FRAGMENT = "1.2.5"
+const val TRUTH = "1.0.1"
+const val ARROW_VERSION = "0.11.0"
+
+//VERSIONS - NETRWORK
+const val RETROFIT_VERSION = "2.8.1"
+const val KOTLIN_SERIALIZATION_VERSION = "1.0.0-RC"
+const val KOTLIN_SERIALIZATION_PLUGIN_VERSION = "0.7.0"
 
 //BUILD PLUGIN VERSION
 const val AGP = "4.0.0"
@@ -31,10 +38,21 @@ const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${APPCOMPAT}"
 const val ANDROIDX_CONSTRAINT_LAYOUT =
     "com.android.support.constraint:constraint-layout:${CONSTRAINT_LAYOUT}"
 const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${CORE_KTX}"
-const val ANDROIDX_NAVIGATION_FRAGMENT = "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION"
+const val ANDROIDX_NAVIGATION_FRAGMENT =
+    "androidx.navigation:navigation-fragment-ktx:$NAVIGATION_VERSION"
 const val ANDROIDX_NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$NAVIGATION_VERSION"
 const val ANDROIDX_FRAGMENT = "androidx.fragment:fragment-ktx:$FRAGMENT"
 
+//UTILS
+const val ARROW_CORE = "io.arrow-kt:arrow-core:$ARROW_VERSION"
+const val ARROW_SYNTAX = "io.arrow-kt:arrow-syntax:$ARROW_VERSION"
+
+//NETWORK
+const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+const val KOTLIN_SERIALIZATION =
+    "org.jetbrains.kotlinx:kotlinx-serialization-core:$KOTLIN_SERIALIZATION_VERSION"
+const val KOTLIN_SERIALIZATION_ADAPTER =
+    "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$KOTLIN_SERIALIZATION_PLUGIN_VERSION"
 
 
 //UI LIBRARIES
@@ -47,11 +65,13 @@ const val LOTTIE_LIBRARY = "com.airbnb.android:lottie:$LOTTIE"
 
 //TESTING LIBRARIES
 const val JUNIT_LIBRARY = "junit:junit:${JUNIT}"
+const val TRUTH_LIBRARY = "com.google.truth:truth:${TRUTH}"
 
 //ANDROID TESTING LIBRARIES
 const val ANDROIDX_TEST_RULES_LIBRARY = "androidx.test:rules:${ANDROIDX_TEST}"
 const val ANDROIDX_TEST_RUNNER_LIBRARY = "androidx.test:runner:${ANDROIDX_TEST}"
 const val ANDROIDX_TEST_EXT_JUNIT_LIBRARY = "androidx.test.ext:junit:${ANDROIDX_TEST_EXT}"
 const val ESPRESSO_CORE_LIBRARY = "androidx.test.espresso:espresso-core:${ESPRESSO_CORE}"
-const val ANDROIDX_NAVIGATION_TEST_LIBRARY = "androidx.navigation:navigation-testing:${NAVIGATION_VERSION}"
+const val ANDROIDX_NAVIGATION_TEST_LIBRARY =
+    "androidx.navigation:navigation-testing:${NAVIGATION_VERSION}"
 const val FRAGMENT_TESTING_LIBRARY = "androidx.fragment:fragment-testing:${FRAGMENT}"
