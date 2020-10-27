@@ -1,6 +1,7 @@
 package com.gvetri.kotlin.videolibrary.network.datasource
 
 import arrow.core.Either
+import com.codingpizza.nasaapi.NasaApi
 import com.google.common.truth.Truth.assertThat
 import com.gvetri.kotlin.videolibrary.model.NasaData
 import com.gvetri.kotlin.videolibrary.model.NasaFileRelation
@@ -9,15 +10,15 @@ import com.gvetri.kotlin.videolibrary.model.NasaMediatype
 import com.gvetri.kotlin.videolibrary.model.NasaResultItem
 import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
-import com.gvetri.kotlin.videolibrary.network.api.NasaApi
 import com.gvetri.testing.FakeNasaApi
 import com.gvetri.testing.factory.FakeNasaSearchFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Response
@@ -30,7 +31,7 @@ class NasaNetworkDataSourceTest {
 
     private lateinit var nasaNetworkDataSource: NasaNetworkDataSource
 
-    private val contentType = MediaType.get("application/json")
+    private val contentType = "application/json".toMediaType()
     private val retrofit = Retrofit.Builder().baseUrl("https://test.com")
         .client(OkHttpClient())
         .addConverterFactory(Json.asConverterFactory(contentType))
@@ -82,23 +83,25 @@ class NasaNetworkDataSourceTest {
         fakeNasaApi.retrieveNasaCollectionResponse =
             Response.success(FakeNasaSearchFactory.obtainNasaSearchModel())
 
-        // when
-        val actualResult = nasaNetworkDataSource.retrieveNasaCollection()
+        runBlocking {
+            // when
+            val actualResult = nasaNetworkDataSource.retrieveNasaCollection()
 
-        // then
-        val expectedNasaSearchResult = NasaSearchResult(
-            items =
-                listOf(
-                    NasaResultItem(
-                        dataList = listOf(nasaDataModel),
-                        nasaLinkModels = listOf(nasaLinkModelPreview, nasaLinkModelCaptions)
+            // then
+            val expectedNasaSearchResult = NasaSearchResult(
+                items =
+                    listOf(
+                        NasaResultItem(
+                            dataList = listOf(nasaDataModel),
+                            nasaLinkModels = listOf(nasaLinkModelPreview, nasaLinkModelCaptions)
+                        )
                     )
-                )
-        )
+            )
 
-        val expectedEither = Either.right(expectedNasaSearchResult)
+            val expectedEither = Either.right(expectedNasaSearchResult)
 
-        assertThat(actualResult).isEqualTo(expectedEither)
+            assertThat(actualResult).isEqualTo(expectedEither)
+        }
     }
 
     @Test
@@ -106,14 +109,15 @@ class NasaNetworkDataSourceTest {
         // given
         fakeNasaApi.retrieveNasaCollectionResponse = Response.error(
             404,
-            ResponseBody.create(
-                contentType, ""
-            )
+            ""
+                .toResponseBody(contentType)
         )
-        // when
-        val actualResult = nasaNetworkDataSource.retrieveNasaCollection()
-        // then
-        val expected = Either.left(NasaError(404, retrofitErrorMessage))
-        assertThat(actualResult).isEqualTo(expected)
+        runBlocking {
+            // when
+            val actualResult = nasaNetworkDataSource.retrieveNasaCollection()
+            // then
+            val expected = Either.left(NasaError(404, retrofitErrorMessage))
+            assertThat(actualResult).isEqualTo(expected)
+        }
     }
 }

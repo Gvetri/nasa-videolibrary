@@ -5,5 +5,5 @@ import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
 
 interface NasaDataSource {
-    fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult>
+    suspend fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult>
 }

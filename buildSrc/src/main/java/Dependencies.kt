@@ -19,6 +19,13 @@ const val LOTTIE = "3.4.1"
 const val FRAGMENT = "1.2.5"
 const val TRUTH = "1.0.1"
 const val ARROW_VERSION = "0.11.0"
+const val COROUTINES_VERSION = "1.3.9"
+
+//NETWORK
+const val OKHTTP_VERSION = "4.9.0"
+
+//KOIN
+const val KOIN = "2.1.6"
 
 //VERSIONS - NETRWORK
 const val RETROFIT_VERSION = "2.8.1"
@@ -31,7 +38,6 @@ const val DETEKT = "1.9.1"
 const val KOTLIN = "1.4.0"
 const val KTLINT_PLUGIN = "9.2.1"
 const val VERSIONS_PLUGIN = "0.28.0"
-const val AUTOMODULE_PLUGIN = "0.13"
 
 // SUPPORT LIBRARIES
 const val ANDROIDX_APPCOMPAT = "androidx.appcompat:appcompat:${APPCOMPAT}"
@@ -43,9 +49,14 @@ const val ANDROIDX_NAVIGATION_FRAGMENT =
 const val ANDROIDX_NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:$NAVIGATION_VERSION"
 const val ANDROIDX_FRAGMENT = "androidx.fragment:fragment-ktx:$FRAGMENT"
 
-//UTILS
 const val ARROW_CORE = "io.arrow-kt:arrow-core:$ARROW_VERSION"
 const val ARROW_SYNTAX = "io.arrow-kt:arrow-syntax:$ARROW_VERSION"
+const val COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINES_VERSION"
+
+//DI
+const val KOIN_VIEWMODEL = "org.koin:koin-androidx-viewmodel:$KOIN"
+const val KOIN_FRAGMENT = "org.koin:koin-androidx-fragment:$KOIN"
+const val KOIN_TEST = "org.koin:koin-test:$KOIN"
 
 //NETWORK
 const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
@@ -53,6 +64,8 @@ const val KOTLIN_SERIALIZATION =
     "org.jetbrains.kotlinx:kotlinx-serialization-core:$KOTLIN_SERIALIZATION_VERSION"
 const val KOTLIN_SERIALIZATION_ADAPTER =
     "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$KOTLIN_SERIALIZATION_PLUGIN_VERSION"
+const val OKHTTP = "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
+const val OKHTTP_LOG_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
 
 
 //UI LIBRARIES
@@ -63,9 +76,14 @@ const val MATERIAL_COMPONENTS_LIBRARY =
     "com.google.android.material:material:${MATERIAL_COMPONENTS}"
 const val LOTTIE_LIBRARY = "com.airbnb.android:lottie:$LOTTIE"
 
+//PLUGINS NAME
+const val SERIALIZATION_PLUGIN = "plugin.serialization"
+
+
 //TESTING LIBRARIES
 const val JUNIT_LIBRARY = "junit:junit:${JUNIT}"
 const val TRUTH_LIBRARY = "com.google.truth:truth:${TRUTH}"
+const val MOCK_RETROFIT = "com.squareup.retrofit2:retrofit-mock:$RETROFIT_VERSION"
 
 //ANDROID TESTING LIBRARIES
 const val ANDROIDX_TEST_RULES_LIBRARY = "androidx.test:rules:${ANDROIDX_TEST}"

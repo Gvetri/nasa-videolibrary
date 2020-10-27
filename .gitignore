@@ -282,6 +282,8 @@ obj/
 # Below 2 lines added manually for this project
 .idea/.gitignore
 .idea/jarRepositories.xml
+.idea/codeStyles/Project.xml
+.idea/markdown-navigator.xml
 
 # OS-specific files
 .DS_Store?

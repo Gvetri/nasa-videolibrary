@@ -44,6 +44,7 @@ android {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
     implementation(project(":core"))
+    implementation(project(":repository"))
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()

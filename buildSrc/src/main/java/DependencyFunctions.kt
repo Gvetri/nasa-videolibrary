@@ -24,19 +24,16 @@ fun DependencyHandler.implementAndroidDefaultLibraries() {
     add(ANDROID_IMPLEMENTATION, ANDROIDX_NAVIGATION_UI)
     add(ANDROID_IMPLEMENTATION, LOTTIE_LIBRARY)
     add(ANDROID_IMPLEMENTATION, ANDROIDX_FRAGMENT)
+    add(ANDROID_IMPLEMENTATION, KOIN_VIEWMODEL)
+    add(ANDROID_IMPLEMENTATION, KOIN_FRAGMENT)
 }
 
 fun DependencyHandler.implementTestLibraries() {
     add(TEST_IMPLEMENTATION, JUNIT_LIBRARY)
     add(TEST_IMPLEMENTATION, TRUTH_LIBRARY)
+    add(TEST_IMPLEMENTATION, KOIN_TEST)
 }
 
 fun DependencyHandler.implementAndroidDebugLibraries() {
     add(ANDROID_DEBUG_IMPLEMENTATION, FRAGMENT_TESTING_LIBRARY)
-}
-
-//TODO Ver porque esto no funciona
-fun DependencyHandler.implementLibraryImplementation() {
-    add(ARROW_CORE, ARROW_VERSION)
-    add(ARROW_SYNTAX, ARROW_VERSION)
 }

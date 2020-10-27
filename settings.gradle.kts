@@ -1,3 +1,6 @@
+include(":network:nasaapi")
+include(":network:apimodel")
+include(":repository")
 include(":model")
 include(":testing")
 include(":datasource")

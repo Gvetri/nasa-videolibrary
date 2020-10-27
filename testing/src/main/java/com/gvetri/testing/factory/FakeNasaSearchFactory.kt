@@ -1,6 +1,6 @@
 package com.gvetri.testing.factory
 
-import com.gvetri.kotlin.videolibrary.network.model.NasaSearchApiModel
+import com.codingpizza.apimodel.NasaSearchApiModel
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 

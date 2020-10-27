@@ -44,12 +44,10 @@ android {
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
-
     implementation(project(":core"))
     implementation(project(":home"))
     implementation(project(":download"))
     implementation(project(":settings"))
-    implementation(project(":network"))
     implementAndroidDebugLibraries()
     implementAndroidDefaultLibraries()
     implementTestLibraries()

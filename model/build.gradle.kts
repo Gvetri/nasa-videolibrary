@@ -7,7 +7,6 @@ plugins {
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
-    testImplementation(project(":testing"))
     implementTestLibraries()
 }
 
