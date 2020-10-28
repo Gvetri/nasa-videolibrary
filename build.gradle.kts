@@ -45,6 +45,15 @@ subprojects {
             }
         }
     }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            freeCompilerArgs = freeCompilerArgs + listOf(
+                "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+            )
+        }
+    }
 }
 
 tasks.register("clean", Delete::class.java) {

@@ -9,7 +9,6 @@ import com.gvetri.kotlin.videolibrary.model.NasaResultItem
 import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
 
 fun nasaSearchResultMapper(apiModel: NasaSearchApiModel?): NasaSearchResult {
-    print("MAPPEEEEERRR")
     return apiModel.let {
         NasaSearchResult(
             listOf(

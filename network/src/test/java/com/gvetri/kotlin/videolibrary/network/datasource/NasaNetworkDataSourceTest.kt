@@ -14,7 +14,6 @@ import com.gvetri.testing.FakeNasaApi
 import com.gvetri.testing.factory.FakeNasaSearchFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -26,7 +25,6 @@ import retrofit2.Retrofit
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
 
-@ExperimentalSerializationApi
 class NasaNetworkDataSourceTest {
 
     private lateinit var nasaNetworkDataSource: NasaNetworkDataSource

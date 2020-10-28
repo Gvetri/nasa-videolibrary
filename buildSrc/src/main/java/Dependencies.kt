@@ -33,7 +33,7 @@ const val KOTLIN_SERIALIZATION_VERSION = "1.0.0-RC"
 const val KOTLIN_SERIALIZATION_PLUGIN_VERSION = "0.7.0"
 
 //BUILD PLUGIN VERSION
-const val AGP = "4.0.0"
+const val AGP = "4.1.0"
 const val DETEKT = "1.9.1"
 const val KOTLIN = "1.4.0"
 const val KTLINT_PLUGIN = "9.2.1"
