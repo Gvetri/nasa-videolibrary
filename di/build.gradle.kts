@@ -38,12 +38,18 @@ android {
     lintOptions {
         isWarningsAsErrors = true
         isAbortOnError = true
+        disable("VectorPath")
     }
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
-    implementation(project(":core"))
+    implementation(project(":home"))
+    implementation(project(":repository"))
+    implementation(project(":datasource"))
+    implementation(project(":network"))
+    implementation(project(":network:nasaapi"))
+    implementation(OKHTTP)
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()

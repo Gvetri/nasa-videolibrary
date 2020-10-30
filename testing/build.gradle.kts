@@ -20,6 +20,7 @@ dependencies {
     implementation(MOCK_RETROFIT)
     implementation(ARROW_CORE)
     implementation(OKHTTP)
+    implementation("org.koin:koin-core:$KOIN")
     implementation(OKHTTP_LOG_INTERCEPTOR)
     kapt(ARROW_SYNTAX)
     implementTestLibraries()

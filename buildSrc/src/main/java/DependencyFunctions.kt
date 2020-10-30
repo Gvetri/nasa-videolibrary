@@ -26,6 +26,7 @@ fun DependencyHandler.implementAndroidDefaultLibraries() {
     add(ANDROID_IMPLEMENTATION, ANDROIDX_FRAGMENT)
     add(ANDROID_IMPLEMENTATION, KOIN_VIEWMODEL)
     add(ANDROID_IMPLEMENTATION, KOIN_FRAGMENT)
+    add(ANDROID_IMPLEMENTATION, KOIN_ANDROID)
 }
 
 fun DependencyHandler.implementTestLibraries() {

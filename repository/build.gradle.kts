@@ -5,7 +5,6 @@ plugins {
     kotlin("android")
     id("kotlin-android-extensions")
     kotlin("kapt")
-    kotlin(SERIALIZATION_PLUGIN) version KOTLIN
 }
 
 android {
@@ -48,14 +47,8 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":model"))
     implementation(project(":datasource"))
-    implementation(project(":network"))
     testImplementation(project(":testing"))
-    // TODO Remove this dependency when the DI module is ready
-    implementation(project(":network:nasaapi"))
-    implementation(KOTLIN_SERIALIZATION)
     implementation(OKHTTP)
-    implementation(OKHTTP_LOG_INTERCEPTOR)
-    implementation(RETROFIT)
     implementation(ARROW_CORE)
     kapt(ARROW_SYNTAX)
     implementAndroidDefaultLibraries()

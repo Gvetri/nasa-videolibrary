@@ -1,3 +1,4 @@
+include(":di")
 include(":network:nasaapi")
 include(":network:apimodel")
 include(":repository")

@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.gvetri.kotlin.videolibrary.home.R
+import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
+
+    val viewModel : HomeViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -15,6 +18,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        viewModel.test()
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 }
