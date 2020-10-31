@@ -16,8 +16,7 @@ dependencies {
     implementation(KOTLIN_SERIALIZATION)
     implementation(RETROFIT)
     implementation(KOTLIN_SERIALIZATION_ADAPTER)
-    implementation(KOIN_FRAGMENT)
-    implementation(KOIN_VIEWMODEL)
+    implementation(KOIN_CORE)
     implementation(OKHTTP)
     implementation(OKHTTP_LOG_INTERCEPTOR)
     implementation(COROUTINES)
@@ -25,8 +24,9 @@ dependencies {
     implementation(MOCK_RETROFIT)
     kapt(ARROW_SYNTAX)
     implementTestLibraries()
-    testImplementation(project(":testing"))
     testImplementation(project(":network:apimodel"))
+    testImplementation(project(":network:fakenasaapi"))
+    testImplementation(project(":network:fake"))
 }
 
 java {

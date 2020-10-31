@@ -44,8 +44,8 @@ android {
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
-    implementation(project(":home"))
     implementation(project(":repository"))
+    implementation(project(":nasarepository"))
     implementation(project(":datasource"))
     implementation(project(":network"))
     implementation(project(":network:nasaapi"))

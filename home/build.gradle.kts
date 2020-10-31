@@ -44,7 +44,10 @@ android {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
     implementation(project(":core"))
-    implementation(project(":repository"))
+    implementation(project(":nasarepository"))
+    implementation(project(":di"))
+    testImplementation(project(":testing"))
+    testImplementation(project(":nasarepository:fake"))
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()

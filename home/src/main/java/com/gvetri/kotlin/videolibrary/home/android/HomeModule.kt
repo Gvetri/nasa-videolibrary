@@ -1,6 +1,6 @@
 package com.gvetri.kotlin.videolibrary.home.android
 
-import com.gvetri.kotlin.videolibrary.repository.android.NASA_REPOSITORY
+import com.codingpizza.di.NASA_REPOSITORY
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

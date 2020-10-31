@@ -49,7 +49,6 @@ dependencies {
     implementation(project(":datasource"))
     implementation(project(":nasarepository"))
     testImplementation(project(":testing"))
-    testImplementation(project(":network:fake"))
     implementation(OKHTTP)
     implementation(ARROW_CORE)
     kapt(ARROW_SYNTAX)

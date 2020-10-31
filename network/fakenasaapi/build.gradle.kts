@@ -10,13 +10,13 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
     implementation(project(":network:apimodel"))
+    implementation(project(":network:nasaapi"))
     implementation(KOTLIN_SERIALIZATION)
     implementation(RETROFIT)
-    implementation(KOTLIN_SERIALIZATION_ADAPTER)
     implementation(KOIN_CORE)
+    implementation(KOTLIN_SERIALIZATION_ADAPTER)
     implementation(MOCK_RETROFIT)
     implementTestLibraries()
-    testImplementation(KOIN_TEST)
 }
 
 java {

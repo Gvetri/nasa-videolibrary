@@ -1,4 +1,4 @@
-package com.gvetri.testing.factory
+package com.codingpizza.fake
 
 import com.codingpizza.apimodel.NasaSearchApiModel
 import kotlinx.serialization.decodeFromString

@@ -1,7 +1,11 @@
 package com.gvetri.kotlin.videolibrary.network.datasource
 
 import arrow.core.Either
-import com.codingpizza.nasaapi.NasaApi
+import com.codingpizza.fake.FakeNasaSearchFactory
+import com.codingpizza.fake.TEST_FAKE_NASA_API
+import com.codingpizza.fake.TEST_NASA_API
+import com.codingpizza.fake.fakeNetworkNasaApiModule
+import com.codingpizza.fakenasaapi.FakeNasaApi
 import com.google.common.truth.Truth.assertThat
 import com.gvetri.kotlin.videolibrary.model.NasaData
 import com.gvetri.kotlin.videolibrary.model.NasaFileRelation
@@ -10,38 +14,29 @@ import com.gvetri.kotlin.videolibrary.model.NasaMediatype
 import com.gvetri.kotlin.videolibrary.model.NasaResultItem
 import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
-import com.gvetri.testing.FakeNasaApi
-import com.gvetri.testing.factory.FakeNasaSearchFactory
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.koin.core.qualifier.named
+import org.koin.test.KoinTest
+import org.koin.test.KoinTestRule
+import org.koin.test.inject
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.mock.MockRetrofit
-import retrofit2.mock.NetworkBehavior
 
-class NasaNetworkDataSourceTest {
+class NasaNetworkDataSourceTest : KoinTest {
 
-    private lateinit var nasaNetworkDataSource: NasaNetworkDataSource
+    @get:Rule
+    val koinTestRule = KoinTestRule.create {
+        modules(
+            fakeNetworkNasaApiModule
+        )
+    }
 
     private val contentType = "application/json".toMediaType()
-    private val retrofit = Retrofit.Builder().baseUrl("https://test.com")
-        .client(OkHttpClient())
-        .addConverterFactory(Json.asConverterFactory(contentType))
-        .build()
 
-    private val networkBehavior = NetworkBehavior.create().also { it.setErrorPercent(0) }
-    private val mockRetrofit = MockRetrofit.Builder(retrofit)
-        .networkBehavior(networkBehavior)
-        .build()
-
-    private val behaviorDelegate = mockRetrofit.create(NasaApi::class.java)
-    private val fakeNasaApi = FakeNasaApi(behaviorDelegate)
+    private val fakeNasaApi: FakeNasaApi by inject(named(TEST_FAKE_NASA_API))
 
     private val nasaDataModel = NasaData(
         center = "MSFC",
@@ -70,14 +65,13 @@ class NasaNetworkDataSourceTest {
 
     private val retrofitErrorMessage = "Response.error()"
 
-    @Before
-    fun setUp() {
-        nasaNetworkDataSource = NasaNetworkDataSource(fakeNasaApi)
-    }
+//    private val nasaNetworkDataSource = NasaNetworkDataSource(fakeNasaApi)
+
 
     @Test
     fun `NasaNetworkDataSource Should return a Successful List of NasaDataModel`() {
         // given
+        val nasaNetworkDataSource = NasaNetworkDataSource(fakeNasaApi)
         fakeNasaApi.retrieveNasaCollectionResponse =
             Response.success(FakeNasaSearchFactory.obtainNasaSearchModel())
 
@@ -88,12 +82,12 @@ class NasaNetworkDataSourceTest {
             // then
             val expectedNasaSearchResult = NasaSearchResult(
                 items =
-                    listOf(
-                        NasaResultItem(
-                            dataList = listOf(nasaDataModel),
-                            nasaLinkModels = listOf(nasaLinkModelPreview, nasaLinkModelCaptions)
-                        )
+                listOf(
+                    NasaResultItem(
+                        dataList = listOf(nasaDataModel),
+                        nasaLinkModels = listOf(nasaLinkModelPreview, nasaLinkModelCaptions)
                     )
+                )
             )
 
             val expectedEither = Either.right(expectedNasaSearchResult)
@@ -105,6 +99,7 @@ class NasaNetworkDataSourceTest {
     @Test
     fun `NasaNetworkDataSource should return an Either left when the Api Response is not successful`() {
         // given
+        val nasaNetworkDataSource = NasaNetworkDataSource(fakeNasaApi)
         fakeNasaApi.retrieveNasaCollectionResponse = Response.error(
             404,
             ""

@@ -1,3 +1,7 @@
+include(":network:fakenasaapi")
+include(":network:fake")
+include(":nasarepository:fake")
+include(":nasarepository")
 include(":di")
 include(":network:nasaapi")
 include(":network:apimodel")

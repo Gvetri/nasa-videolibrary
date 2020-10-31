@@ -14,8 +14,8 @@ class NasaApplication : Application() {
         super.onCreate()
         startKoin {
             modules(
-                homeModule,
                 repositoryModule,
+                homeModule,
                 networkDataSourceModule,
                 networkModule
             )

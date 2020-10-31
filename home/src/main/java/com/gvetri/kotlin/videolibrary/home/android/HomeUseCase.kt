@@ -1,5 +1,6 @@
 package com.gvetri.kotlin.videolibrary.home.android
 
-import com.gvetri.kotlin.videolibrary.repository.android.NasaRepository
+import com.codingpizza.nasarepository.NasaRepository
+
 
 class HomeUseCase(val nasaRepository: NasaRepository)
