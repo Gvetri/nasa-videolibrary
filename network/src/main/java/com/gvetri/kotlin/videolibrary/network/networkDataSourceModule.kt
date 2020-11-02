@@ -18,5 +18,4 @@ val networkDataSourceModule = module {
             ),
         )
     }
-
 }

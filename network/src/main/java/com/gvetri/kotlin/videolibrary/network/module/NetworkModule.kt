@@ -1,9 +1,7 @@
 package com.gvetri.kotlin.videolibrary.network.module
 
 import com.codingpizza.nasaapi.NasaApi
-import com.gvetri.kotlin.videolibrary.network.datasource.NasaNetworkDataSource
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient

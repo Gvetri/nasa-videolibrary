@@ -3,7 +3,6 @@ package com.gvetri.kotlin.videolibrary.network.datasource
 import arrow.core.Either
 import com.codingpizza.fake.FakeNasaSearchFactory
 import com.codingpizza.fake.TEST_FAKE_NASA_API
-import com.codingpizza.fake.TEST_NASA_API
 import com.codingpizza.fake.fakeNetworkNasaApiModule
 import com.codingpizza.fakenasaapi.FakeNasaApi
 import com.google.common.truth.Truth.assertThat
@@ -67,7 +66,6 @@ class NasaNetworkDataSourceTest : KoinTest {
 
 //    private val nasaNetworkDataSource = NasaNetworkDataSource(fakeNasaApi)
 
-
     @Test
     fun `NasaNetworkDataSource Should return a Successful List of NasaDataModel`() {
         // given
@@ -82,12 +80,12 @@ class NasaNetworkDataSourceTest : KoinTest {
             // then
             val expectedNasaSearchResult = NasaSearchResult(
                 items =
-                listOf(
-                    NasaResultItem(
-                        dataList = listOf(nasaDataModel),
-                        nasaLinkModels = listOf(nasaLinkModelPreview, nasaLinkModelCaptions)
+                    listOf(
+                        NasaResultItem(
+                            dataList = listOf(nasaDataModel),
+                            nasaLinkModels = listOf(nasaLinkModelPreview, nasaLinkModelCaptions)
+                        )
                     )
-                )
             )
 
             val expectedEither = Either.right(expectedNasaSearchResult)

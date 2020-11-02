@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("kotlin-android-extensions")
+    kotlin("kapt")
 }
 
 android {
@@ -46,9 +47,14 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":nasarepository"))
     implementation(project(":di"))
-    testImplementation(project(":testing"))
-    testImplementation(project(":nasarepository:fake"))
+    implementation(project(":home:public"))
+    implementation(project(":model"))
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()
+    implementation(ARROW_CORE)
+    kapt(ARROW_SYNTAX)
+    testImplementation(project(":testing"))
+    testImplementation(project(":nasarepository:fake"))
+    testImplementation(project(":network:fake"))
 }

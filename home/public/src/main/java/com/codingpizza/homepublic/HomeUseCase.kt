@@ -1,9 +1,9 @@
-package com.codingpizza.nasarepository
+package com.codingpizza.homepublic
 
 import arrow.core.Either
 import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
 
-interface NasaRepository {
+interface HomeUseCase {
     suspend fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult>
 }

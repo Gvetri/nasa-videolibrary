@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("kotlin-android-extensions")
+    kotlin("kapt")
 }
 
 android {
@@ -38,20 +39,17 @@ android {
     lintOptions {
         isWarningsAsErrors = true
         isAbortOnError = true
-        disable("VectorPath")
     }
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
-    implementation(project(":repository"))
     implementation(project(":nasarepository"))
-    implementation(project(":datasource"))
-    implementation(project(":network"))
-    implementation(project(":network:nasaapi"))
-    implementation(project(":home:public"))
-    implementation(KOIN_TEST)
-    implementation(OKHTTP)
+    implementation(project(":model"))
+    implementation(ARROW_CORE)
+    kapt(ARROW_SYNTAX)
+    testImplementation(project(":testing"))
+    testImplementation(project(":nasarepository:fake"))
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()

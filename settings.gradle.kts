@@ -1,3 +1,4 @@
+include(":home:public")
 include(":network:fakenasaapi")
 include(":network:fake")
 include(":nasarepository:fake")

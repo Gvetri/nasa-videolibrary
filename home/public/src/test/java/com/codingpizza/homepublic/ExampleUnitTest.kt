@@ -1,4 +1,4 @@
-package com.codingpizza.fake
+package com.codingpizza.homepublic
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.codingpizza.di
+package com.codingpizza.homepublic
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.codingpizza.di.test", appContext.packageName)
+        assertEquals("com.codingpizza.apublic.test", appContext.packageName)
     }
 }

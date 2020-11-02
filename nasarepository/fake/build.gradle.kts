@@ -48,6 +48,8 @@ dependencies {
     implementation(project(":model"))
     implementation(project(":datasource"))
     implementation(project(":nasarepository"))
+    implementation(project(":network:fake"))
+    implementation(project(":network:fakenasaapi"))
     testImplementation(project(":testing"))
     implementation(OKHTTP)
     implementation(ARROW_CORE)

@@ -6,7 +6,6 @@ import com.gvetri.kotlin.videolibrary.repository.android.NasaRepositoryImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-
 const val NASA_REPOSITORY = "NasaRepository"
 
 val repositoryModule = module {
@@ -14,4 +13,3 @@ val repositoryModule = module {
         NasaRepositoryImpl(nasaDataSource = get(named(NETWORK_NASA_DATASOURCE)))
     }
 }
-

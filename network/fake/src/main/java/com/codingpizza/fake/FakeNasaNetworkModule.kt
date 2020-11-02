@@ -27,7 +27,6 @@ const val TEST_HTTP_CLIENT_LOG_INTERCEPTOR = "TestLoggerInterceptor"
 const val TEST_BEHAVIOR_DELEGATE = "TestBehaviorDelegate"
 const val TEST_MOCK_RETROFIT = "TestMockRetrofit"
 const val TEST_NETWORK_BEHAVIOR = "TestNetworkBehavior"
-const val TESTING_NASASEARCH_FACTORY = "NasaSearchFactory"
 const val TEST_BASE_URL = "https://example.com"
 
 val fakeNetworkNasaApiModule = module {
@@ -61,8 +60,6 @@ val fakeNetworkNasaApiModule = module {
 
     single(named(TEST_HTTP_CLIENT_LOG_INTERCEPTOR)) { provideFakeInterceptor() }
 
-    single(named(TESTING_NASASEARCH_FACTORY)) { NasaSearchFactory }
-
     single(named(TEST_NASA_API)) {
         provideTestNasaApi(
             behaviorDelegate = get(named(TEST_BEHAVIOR_DELEGATE)),
@@ -90,7 +87,6 @@ val fakeNetworkNasaApiModule = module {
     single(named(TEST_NETWORK_BEHAVIOR)) {
         provideNetworkBehavior()
     }
-
 }
 
 fun provideMockRetrofit(retrofit: Retrofit, networkBehaviour: NetworkBehavior): MockRetrofit {
@@ -102,7 +98,6 @@ fun provideMockRetrofit(retrofit: Retrofit, networkBehaviour: NetworkBehavior): 
 fun provideNetworkBehavior(): NetworkBehavior {
     return NetworkBehavior.create().apply { setErrorPercent(0) }
 }
-
 
 fun provideBehaviorDelegate(mockRetrofit: MockRetrofit): BehaviorDelegate<NasaApi> =
     mockRetrofit.create(NasaApi::class.java)

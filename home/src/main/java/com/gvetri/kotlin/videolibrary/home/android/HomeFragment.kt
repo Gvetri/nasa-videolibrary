@@ -10,7 +10,7 @@ import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
 
-    val viewModel : HomeViewModel by inject()
+    val viewModel: HomeViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
