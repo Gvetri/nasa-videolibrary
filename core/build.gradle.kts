@@ -40,6 +40,10 @@ android {
         isAbortOnError = true
         disable("VectorPath")
     }
+
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {

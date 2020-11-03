@@ -11,7 +11,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.create
 
-const val BASE_URL = "https://test.com"
+const val BASE_URL = "https://images-api.nasa.gov"
 internal const val NASA_API_SERVICE = "NasaApi"
 internal const val NASA_RETROFIT = "NasaRetrofit"
 internal const val NASA_HTTPCLIENT = "NasaHttpClient"
@@ -39,7 +39,9 @@ private fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(client)
-        .addConverterFactory(Json.asConverterFactory(contentType = "application/json".toMediaType()))
+        .addConverterFactory(Json {
+            ignoreUnknownKeys = true
+        }.asConverterFactory(contentType = "application/json".toMediaType()))
         .build()
 }
 

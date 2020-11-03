@@ -6,6 +6,8 @@ import com.codingpizza.nasaapi.NasaApi
 import com.gvetri.kotlin.videolibrary.datasource.NasaDataSource
 import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class FakeNasaNetworkDataSource(
     private val fakeNasaApi: NasaApi,
@@ -13,9 +15,13 @@ class FakeNasaNetworkDataSource(
 ) : NasaDataSource {
 
     override suspend fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult> {
-        println("FAKE")
-        val serviceResult = fakeNasaApi.retrieveNasaCollection("")
-        println("FAKE result $serviceResult")
+        val serviceResult = withContext(Dispatchers.IO) {
+            withContext(Dispatchers.Default) {
+                fakeNasaApi.retrieveNasaCollection(
+                    ""
+                )
+            }
+        }
         return if (serviceResult.isSuccessful) {
             Either.right(nasaSearchMapper(serviceResult.body()))
         } else {

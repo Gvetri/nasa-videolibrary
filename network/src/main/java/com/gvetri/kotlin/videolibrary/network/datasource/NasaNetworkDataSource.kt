@@ -13,8 +13,7 @@ class NasaNetworkDataSource(
 ) : NasaDataSource {
 
     override suspend fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult> {
-        println("NASA NETWORK DATA SOURCE")
-        val serviceResult = apiService.retrieveNasaCollection("")
+        val serviceResult = apiService.retrieveNasaCollection("1987A")
         return if (serviceResult.isSuccessful) {
             Either.right(nasaSearchMapper(serviceResult.body()))
         } else {

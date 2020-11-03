@@ -23,15 +23,15 @@ class HomeViewModel(
     private val _errorLiveData: MutableLiveData<Event<Unit>> = MutableLiveData()
     val errorLiveData: LiveData<Event<Unit>> = _errorLiveData
 
+    init {
+        retrieveNasaCollection()
+    }
+
     fun retrieveNasaCollection() {
         viewModelScope.launch(dispatcher) {
             when (val result = homeUseCase.retrieveNasaCollection()) {
-                is Either.Right -> {
-                    _nasaLiveData.value = result.b
-                }
-                is Either.Left -> {
-                    _errorLiveData.value = Event(Unit)
-                }
+                is Either.Right -> _nasaLiveData.postValue(result.b)
+                is Either.Left -> _errorLiveData.postValue(Event(Unit))
             }
         }
     }

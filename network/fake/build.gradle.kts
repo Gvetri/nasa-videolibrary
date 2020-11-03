@@ -25,7 +25,7 @@ dependencies {
     implementation(ARROW_CORE)
     implementation(OKHTTP_LOG_INTERCEPTOR)
     implementation(COROUTINES)
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.0")
+    testImplementation(COROUTINES_TEST)
     kapt(ARROW_SYNTAX)
     implementTestLibraries()
 }

@@ -63,12 +63,9 @@ class HomeViewModelTest : KoinTest {
             //then
             val expected = nasaSearchResult
 
-
             viewModel.nasaLiveData.observeForTesting {
                 assertThat(viewModel.nasaLiveData.value).isEqualTo(expected)
             }
-
-
 
         }
 
@@ -82,10 +79,9 @@ class HomeViewModelTest : KoinTest {
             viewModel.retrieveNasaCollection()
 
             //then
-            val expected = NasaError(500, "ServerError2")
 
-            viewModel.errorLiveData.observeForever { error ->
-                assertThat(error.getContentIfNotHandled()).isEqualTo(Event(Unit))
+            viewModel.errorLiveData.observeForTesting {
+                assertThat(viewModel.errorLiveData.value!!.peekContent()).isEqualTo(Event(Unit))
             }
         }
 }

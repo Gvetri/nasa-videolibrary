@@ -40,6 +40,11 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
@@ -53,12 +58,14 @@ dependencies {
     implementTestLibraries()
     implementAndroidTestLibraries()
     implementation(ARROW_CORE)
+    implementation(COROUTINES)
+    implementation(COIL)
     kapt(ARROW_SYNTAX)
     testImplementation(project(":testing"))
     testImplementation(project(":nasarepository:fake"))
     testImplementation(project(":network:fake"))
     testImplementation(project(":home:fake"))
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.0")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation(COROUTINES_TEST)
+    testImplementation(ANDROIDX_CORE_TESTING)
 
 }
