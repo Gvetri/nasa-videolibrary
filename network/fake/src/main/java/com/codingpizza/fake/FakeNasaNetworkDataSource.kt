@@ -13,7 +13,9 @@ class FakeNasaNetworkDataSource(
 ) : NasaDataSource {
 
     override suspend fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult> {
+        println("FAKE")
         val serviceResult = fakeNasaApi.retrieveNasaCollection("")
+        println("FAKE result $serviceResult")
         return if (serviceResult.isSuccessful) {
             Either.right(nasaSearchMapper(serviceResult.body()))
         } else {

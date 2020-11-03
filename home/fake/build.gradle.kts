@@ -49,16 +49,12 @@ dependencies {
     implementation(project(":di"))
     implementation(project(":home:public"))
     implementation(project(":model"))
+    implementation(project(":nasarepository:fake"))
+    implementation(project(":network:fake"))
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()
     implementation(ARROW_CORE)
     kapt(ARROW_SYNTAX)
     testImplementation(project(":testing"))
-    testImplementation(project(":nasarepository:fake"))
-    testImplementation(project(":network:fake"))
-    testImplementation(project(":home:fake"))
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.0")
-    testImplementation("androidx.arch.core:core-testing:2.1.0")
-
 }

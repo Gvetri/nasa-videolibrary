@@ -64,8 +64,6 @@ class NasaNetworkDataSourceTest : KoinTest {
 
     private val retrofitErrorMessage = "Response.error()"
 
-//    private val nasaNetworkDataSource = NasaNetworkDataSource(fakeNasaApi)
-
     @Test
     fun `NasaNetworkDataSource Should return a Successful List of NasaDataModel`() {
         // given
