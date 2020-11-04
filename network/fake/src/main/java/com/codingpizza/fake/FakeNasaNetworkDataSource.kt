@@ -11,17 +11,13 @@ import kotlinx.coroutines.withContext
 
 class FakeNasaNetworkDataSource(
     private val fakeNasaApi: NasaApi,
-    private val nasaSearchMapper: (NasaSearchApiModel?) -> NasaSearchResult
+    private val nasaSearchMapper: (NasaSearchApiModel?) -> NasaSearchResult = ::nasaSearchResultMapper
 ) : NasaDataSource {
 
     override suspend fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult> {
-        val serviceResult = withContext(Dispatchers.IO) {
-            withContext(Dispatchers.Default) {
-                fakeNasaApi.retrieveNasaCollection(
-                    ""
-                )
-            }
-        }
+        val serviceResult = fakeNasaApi.retrieveNasaCollection(
+            ""
+        )
         return if (serviceResult.isSuccessful) {
             Either.right(nasaSearchMapper(serviceResult.body()))
         } else {

@@ -105,6 +105,7 @@ fun provideBehaviorDelegate(mockRetrofit: MockRetrofit): BehaviorDelegate<NasaAp
 fun provideDefaultResponse(): Response<NasaSearchApiModel?> =
     Response.success(FakeNasaSearchFactory.obtainNasaSearchModel())
 
+
 fun provideTestNasaApi(
     behaviorDelegate: BehaviorDelegate<NasaApi>,
     defaultResponse: Response<NasaSearchApiModel?>

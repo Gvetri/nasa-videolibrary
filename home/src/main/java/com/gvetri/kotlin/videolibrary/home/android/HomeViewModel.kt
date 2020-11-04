@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
 import com.codingpizza.homepublic.HomeUseCase
+import com.gvetri.kotlin.videolibrary.core.LoadingState
 import com.gvetri.kotlin.videolibrary.core.repository.Event
 import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
 import kotlinx.coroutines.CoroutineDispatcher
@@ -14,9 +15,11 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val homeUseCase: HomeUseCase,
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
+    private val _loadingLiveData: MutableLiveData<Event<LoadingState>> = MutableLiveData()
+    val loadingLiveData: LiveData<Event<LoadingState>> = _loadingLiveData
     private val _nasaLiveData: MutableLiveData<NasaSearchResult> = MutableLiveData()
     val nasaLiveData: LiveData<NasaSearchResult> = _nasaLiveData
 
@@ -27,13 +30,19 @@ class HomeViewModel(
         retrieveNasaCollection()
     }
 
-    fun retrieveNasaCollection() {
+    private fun retrieveNasaCollection() {
         viewModelScope.launch(dispatcher) {
+            _loadingLiveData.value = Event(LoadingState.Loading)
             when (val result = homeUseCase.retrieveNasaCollection()) {
-                is Either.Right -> _nasaLiveData.postValue(result.b)
-                is Either.Left -> _errorLiveData.postValue(Event(Unit))
+                is Either.Right -> {
+                    _loadingLiveData.value = Event(LoadingState.NotLoading)
+                    _nasaLiveData.value = result.b
+                }
+                is Either.Left -> {
+                    _loadingLiveData.value = Event(LoadingState.NotLoading)
+                    _errorLiveData.value = Event(Unit)
+                }
             }
         }
     }
-
 }
