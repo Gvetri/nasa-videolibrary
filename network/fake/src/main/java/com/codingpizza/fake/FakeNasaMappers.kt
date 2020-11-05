@@ -1,6 +1,8 @@
 package com.codingpizza.fake
 
+import com.codingpizza.apimodel.NasaAssetsApiModel
 import com.codingpizza.apimodel.NasaSearchApiModel
+import com.gvetri.kotlin.videolibrary.model.NasaAssetsResult
 import com.gvetri.kotlin.videolibrary.model.NasaData
 import com.gvetri.kotlin.videolibrary.model.NasaFileRelation
 import com.gvetri.kotlin.videolibrary.model.NasaLinkModel
@@ -39,9 +41,15 @@ fun nasaSearchResultMapper(apiModel: NasaSearchApiModel?): NasaSearchResult {
                                 )
                             )
                         } ?: emptyList()
-                    }?.flatten() ?: emptyList()
+                    }?.flatten() ?: emptyList(), null
                 )
             )
         )
     }
+}
+
+fun nasaAssetsResultMapper(apiModel: List<String?>?): NasaAssetsResult {
+    if (apiModel == null) return NasaAssetsResult(emptyList())
+    val hrefLinks = apiModel.mapNotNull { link -> link }
+    return NasaAssetsResult(hrefLinks)
 }

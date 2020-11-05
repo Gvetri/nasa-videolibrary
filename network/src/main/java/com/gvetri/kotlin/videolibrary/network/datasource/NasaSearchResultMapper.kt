@@ -23,9 +23,13 @@ private fun nasaResultItemMapper(nasaSearchApiModel: NasaSearchApiModel): List<N
         NasaResultItem(
             dataList = nasaDataMapper(nasaItems)[position],
             nasaLinkModels = nasaLinkApiMapper(nasaItems)[position],
+            href = nasaHrefApiMapper(nasaItems)[position]
         )
     }
 }
+
+fun nasaHrefApiMapper(nasaItems: List<NasaItemApiModel>): List<String?> =
+    nasaItems.map { nasaItemApiModel -> nasaItemApiModel.href }
 
 private fun nasaDataMapper(nasaItems: List<NasaItemApiModel>): List<List<NasaData>> {
     val nasaItemsDataList = nasaItems.map { it.dataContent ?: emptyList() }
@@ -63,4 +67,3 @@ private fun nasaLinkApiMapper(nasaItems: List<NasaItemApiModel>): List<List<Nasa
         }
     }
 }
-

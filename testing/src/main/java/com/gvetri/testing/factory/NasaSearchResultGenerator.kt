@@ -44,7 +44,8 @@ fun generateNasaSearchResult(): NasaSearchResult {
                     nasaLinkModels = listOf(
                         nasaLinkModelPreview,
                         nasaLinkModelCaptions
-                    )
+                    ),
+                    null
                 )
             )
     )

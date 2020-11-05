@@ -41,7 +41,7 @@ android {
         isAbortOnError = true
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }

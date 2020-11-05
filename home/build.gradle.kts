@@ -5,6 +5,8 @@ plugins {
     kotlin("android")
     id("kotlin-android-extensions")
     kotlin("kapt")
+    id("kotlin-android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -44,7 +46,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
 }
 
 dependencies {
@@ -54,6 +55,9 @@ dependencies {
     implementation(project(":di"))
     implementation(project(":home:public"))
     implementation(project(":model"))
+    implementation(EXOPLAYER_CORE_LIBRARY)
+    implementation(EXOPLAYER_DASH_LIBRARY)
+    implementation(EXOPLAYER_UI_LIBRARY)
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()
@@ -67,5 +71,4 @@ dependencies {
     testImplementation(project(":home:fake"))
     testImplementation(COROUTINES_TEST)
     testImplementation(ANDROIDX_CORE_TESTING)
-
 }

@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gvetri.kotlin.videolibrary.home.databinding.LayoutItemNasaBinding
 import com.gvetri.kotlin.videolibrary.model.NasaResultItem
 
-class NasaListAdapter : RecyclerView.Adapter<NasaItemListViewHolder>() {
+class NasaListAdapter(private val onItemClicked: (NasaResultItem) -> Unit) :
+    RecyclerView.Adapter<NasaItemListViewHolder>() {
 
     private val nasaItemList: MutableList<NasaResultItem> = mutableListOf()
 
@@ -16,7 +17,7 @@ class NasaListAdapter : RecyclerView.Adapter<NasaItemListViewHolder>() {
         )
 
     override fun onBindViewHolder(holder: NasaItemListViewHolder, position: Int) {
-        holder.bind(nasaItemList[position])
+        holder.bind(nasaItemList[position],onItemClicked)
     }
 
     override fun getItemCount(): Int = nasaItemList.size
@@ -26,5 +27,4 @@ class NasaListAdapter : RecyclerView.Adapter<NasaItemListViewHolder>() {
         nasaItemList.addAll(list)
         notifyDataSetChanged()
     }
-
 }

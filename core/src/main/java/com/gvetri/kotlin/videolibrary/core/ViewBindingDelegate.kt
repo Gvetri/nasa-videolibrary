@@ -1,6 +1,5 @@
 package com.gvetri.kotlin.videolibrary.core
 
-
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -20,7 +19,6 @@ import kotlin.reflect.KProperty
  *
  * Source: https://github.com/Zhuinden/ViewBindingExample/blob/master/app/src/main/java/com/zhuinden/viewbindingexample/FragmentViewBindingDelegate.kt
  */
-
 
 class FragmentViewBindingDelegate<T : ViewBinding>(
     val fragment: Fragment,

@@ -99,7 +99,7 @@ class HomeViewModelTest : KoinTest {
             val customExecute = { Either.left(nasaError) }
             val fakeUseCase =
                 FakeHomeUseCase(fakeNasaRepository = get(named(TEST_FAKE_NASA_REPOSITORY)))
-            fakeUseCase.customExecute = customExecute
+            fakeUseCase.customResponse = customExecute
 
             val viewModel = HomeViewModel(fakeUseCase, testDispatcher)
 

@@ -39,9 +39,11 @@ private fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(client)
-        .addConverterFactory(Json {
-            ignoreUnknownKeys = true
-        }.asConverterFactory(contentType = "application/json".toMediaType()))
+        .addConverterFactory(
+            Json {
+                ignoreUnknownKeys = true
+            }.asConverterFactory(contentType = "application/json".toMediaType())
+        )
         .build()
 }
 

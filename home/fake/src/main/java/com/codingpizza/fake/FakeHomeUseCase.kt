@@ -8,9 +8,9 @@ import com.gvetri.kotlin.videolibrary.model.error.NasaError
 
 class FakeHomeUseCase(private val fakeNasaRepository: NasaRepository) : HomeUseCase {
 
-    var customExecute : (() -> Either<NasaError,NasaSearchResult>)? = null
+    var customResponse : (() -> Either<NasaError,NasaSearchResult>)? = null
 
     override suspend fun retrieveNasaCollection(): Either<NasaError, NasaSearchResult> =
-        if (customExecute == null) fakeNasaRepository.retrieveNasaCollection()
-        else customExecute?.invoke()!!
+        if (customResponse == null) fakeNasaRepository.retrieveNasaCollection()
+        else customResponse?.invoke()!!
 }

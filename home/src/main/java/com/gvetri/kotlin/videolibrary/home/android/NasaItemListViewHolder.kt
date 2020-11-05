@@ -9,12 +9,13 @@ import com.gvetri.kotlin.videolibrary.model.NasaResultItem
 class NasaItemListViewHolder(private val binding: LayoutItemNasaBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(nasaItem: NasaResultItem) {
+    fun bind(nasaItem: NasaResultItem, onItemClicked: (NasaResultItem) -> Unit) {
         binding.apply {
             itemTitle.text = nasaItem.dataList.firstOrNull()?.title
             itemDescription.text = nasaItem.dataList.firstOrNull()?.description
             val imageUrl = nasaItem.nasaLinkModels.filter { it.render == NasaMediatype.IMAGE }
             previewImage.load(imageUrl.firstOrNull()?.href)
+            cardItemContainer.setOnClickListener { onItemClicked(nasaItem) }
         }
     }
 }

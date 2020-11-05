@@ -41,7 +41,7 @@ android {
         disable("VectorPath")
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
