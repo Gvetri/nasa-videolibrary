@@ -50,7 +50,8 @@ private fun provideRetrofit(client: OkHttpClient): Retrofit {
 
 private fun provideHttpclient(interceptor: HttpLoggingInterceptor): OkHttpClient = OkHttpClient()
     .newBuilder()
-    .callTimeout(120, TimeUnit.SECONDS)
+    .connectTimeout(240, TimeUnit.SECONDS)
+    .readTimeout(240,TimeUnit.SECONDS)
     .addInterceptor(interceptor)
     .build()
 

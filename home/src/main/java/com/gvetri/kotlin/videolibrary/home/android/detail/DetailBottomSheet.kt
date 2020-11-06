@@ -84,7 +84,7 @@ class DetailBottomSheet : BottomSheetDialogFragment() {
 
     private fun setMediaItem(url: String) {
         val mediaItem: MediaItem =
-            MediaItem.fromUri("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+            MediaItem.fromUri(url)
         simplePlayer?.apply {
             setMediaItem(mediaItem)
             prepare()
