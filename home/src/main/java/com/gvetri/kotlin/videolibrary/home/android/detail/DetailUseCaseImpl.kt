@@ -8,6 +8,10 @@ import com.gvetri.kotlin.videolibrary.model.error.NasaError
 
 class DetailUseCaseImpl(private val nasaRepository: NasaRepository) : DetailUseCase {
 
+    private val noHrefFoundErrorCode = 400
+
+    private val noLinkFoundErrorMessage = "No videos available for this id"
+
     override suspend fun retrieveVideoUrl(href: String): Either<NasaError, String> {
         val assetsResult = nasaRepository.retrieveVideoUrl(href)
         return assetsResult.fold(::ifRight, ::ifLeft)
@@ -17,20 +21,21 @@ class DetailUseCaseImpl(private val nasaRepository: NasaRepository) : DetailUseC
         val obtainLinkFromList =
             nasaAssetsResult.hrefLinks.mapNotNull(::filterByExtension)
                 .firstOrNull()
+                ?.replace("http", "https")
         return if (obtainLinkFromList == null) Either.left(
             NasaError(
-                400,
-                "No videos available for this id"
+                noHrefFoundErrorCode,
+                noLinkFoundErrorMessage
             )
         )
         else Either.right(obtainLinkFromList)
     }
 
+    private fun ifRight(nasaError: NasaError): Either<NasaError, String> = Either.left(nasaError)
+
     private fun filterByExtension(link: String): String? = when {
         link.endsWith(".mp4") -> link
         else -> null
     }
-
-    private fun ifRight(nasaError: NasaError): Either<NasaError, String> = Either.left(nasaError)
 
 }

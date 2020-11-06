@@ -8,7 +8,7 @@
 
 
     <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/player"
+        android:id="@+id/playerView"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player" />
+        app:layout_constraintTop_toBottomOf="@+id/playerView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
