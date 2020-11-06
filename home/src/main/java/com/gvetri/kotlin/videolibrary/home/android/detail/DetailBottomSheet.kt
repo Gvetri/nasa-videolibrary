@@ -1,33 +1,43 @@
 package com.gvetri.kotlin.videolibrary.home.android.detail
 
 import android.app.Dialog
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.fragment.navArgs
 import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
-import com.gvetri.kotlin.videolibrary.core.repository.Event
+import com.gvetri.kotlin.videolibrary.core.MainViewModel
 import com.gvetri.kotlin.videolibrary.core.repository.EventObserver
 import com.gvetri.kotlin.videolibrary.home.R
 import com.gvetri.kotlin.videolibrary.home.databinding.FragmentDetailBinding
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class DetailBottomSheet : BottomSheetDialogFragment() {
 
     private val viewModel: DetailViewModel by inject()
+    private val sharedViewModel by sharedViewModel<MainViewModel>()
     private var binding: FragmentDetailBinding? = null
     private val arguments: DetailBottomSheetArgs by navArgs()
     private var simplePlayer: SimpleExoPlayer? = null
+
+    private val playerListener = object : Player.EventListener {
+        override fun onIsPlayingChanged(isPlaying: Boolean) {
+            super.onIsPlayingChanged(isPlaying)
+            sharedViewModel.updateIsVideoPlaying(isPlaying)
+        }
+    }
+
 
     override fun onStart() {
         super.onStart()
@@ -47,6 +57,7 @@ class DetailBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             simplePlayer = SimpleExoPlayer.Builder(requireContext()).build()
+            simplePlayer?.addListener(playerListener)
             playerView.player = simplePlayer
             title.text = arguments.title
         }
@@ -66,12 +77,14 @@ class DetailBottomSheet : BottomSheetDialogFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        sharedViewModel.updateIsVideoPlaying(false)
         releasePlayer()
         binding = null
     }
 
     private fun setMediaItem(url: String) {
-        val mediaItem: MediaItem = MediaItem.fromUri(url)
+        val mediaItem: MediaItem =
+            MediaItem.fromUri("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
         simplePlayer?.apply {
             setMediaItem(mediaItem)
             prepare()
@@ -79,6 +92,120 @@ class DetailBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
+    override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode)
+        if (isInPictureInPictureMode) {
+            binding?.title?.visibility = View.GONE
+            setFullScreenPlayer()
+        } else {
+            setOriginalPlayerState()
+            binding?.title?.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setOriginalPlayerState() {
+        binding?.apply {
+            playerView.apply {
+                val density = resources.displayMetrics.density
+                val dp = 240 * density
+                layoutParams = ConstraintLayout.LayoutParams(0, dp.toInt())
+                binding?.root?.removeView(this)
+                binding?.root?.addView(this, 0)
+                val constrainSet = ConstraintSet()
+                constrainSet.clone(binding?.root)
+                constrainSet.connect(
+                    id,
+                    ConstraintSet.START,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.START,
+                    0
+                )
+                constrainSet.connect(
+                    id,
+                    ConstraintSet.TOP,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.TOP,
+                    0
+                )
+                constrainSet.connect(
+                    id,
+                    ConstraintSet.END,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.END,
+                    0
+                )
+                constrainSet.applyTo(binding?.root)
+
+                title.layoutParams = ConstraintLayout.LayoutParams(0, 48)
+                binding?.root?.removeView(this)
+                binding?.root?.addView(this, 1)
+                val titleConstraintSet = ConstraintSet()
+                titleConstraintSet.clone(binding?.root)
+                titleConstraintSet.connect(
+                    title.id,
+                    ConstraintSet.START,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.START,
+                    0
+                )
+                titleConstraintSet.connect(
+                    title.id,
+                    ConstraintSet.TOP,
+                    id,
+                    ConstraintSet.BOTTOM,
+                    0
+                )
+                titleConstraintSet.connect(
+                    title.id,
+                    ConstraintSet.END,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.END,
+                    0
+                )
+                constrainSet.applyTo(binding?.root)
+
+            }
+        }
+    }
+
+    private fun setFullScreenPlayer() {
+        binding?.playerView?.apply {
+            layoutParams = ConstraintLayout.LayoutParams(0, 0)
+            binding?.root?.removeView(this)
+            binding?.root?.addView(this, 0)
+            val constrainSet = ConstraintSet()
+            constrainSet.clone(binding?.root)
+            constrainSet.connect(
+                id,
+                ConstraintSet.TOP,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.TOP,
+                0
+            )
+            constrainSet.connect(
+                id,
+                ConstraintSet.LEFT,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.LEFT,
+                0
+            )
+            constrainSet.connect(
+                id,
+                ConstraintSet.RIGHT,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.RIGHT,
+                0
+            )
+            constrainSet.connect(
+                id,
+                ConstraintSet.BOTTOM,
+                ConstraintSet.PARENT_ID,
+                ConstraintSet.BOTTOM,
+                0
+            )
+            constrainSet.applyTo(binding?.root)
+        }
+    }
 
     private fun releasePlayer() {
         simplePlayer?.apply { release() }

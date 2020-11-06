@@ -2,6 +2,7 @@ package com.gvetri.kotlin.videolibrary.app
 
 import android.app.Application
 import com.codingpizza.di.repositoryModule
+import com.gvetri.kotlin.videolibrary.core.coreModule
 import com.gvetri.kotlin.videolibrary.home.android.homeModule
 import com.gvetri.kotlin.videolibrary.network.module.networkModule
 import com.gvetri.kotlin.videolibrary.network.networkDataSourceModule
@@ -12,6 +13,7 @@ class NasaApplication : Application() {
         super.onCreate()
         startKoin {
             modules(
+                coreModule,
                 repositoryModule,
                 homeModule,
                 networkDataSourceModule,

@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":network"))
     implementation(project(":network:nasaapi"))
     implementation(project(":home:public"))
+    implementation(project(":core"))
     implementation(KOIN_TEST)
     implementation(OKHTTP)
     implementAndroidDefaultLibraries()

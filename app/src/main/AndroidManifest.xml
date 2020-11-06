@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/CoreAppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name="com.gvetri.kotlin.videolibrary.app.MainActivity">
+        <activity
+            android:name="com.gvetri.kotlin.videolibrary.app.MainActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
