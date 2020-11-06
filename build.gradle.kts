@@ -1,5 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-
 plugins {
     id("com.android.application") version AGP apply false
     id("com.android.library") version AGP apply false
@@ -14,6 +12,7 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+        maven { setUrl("https://dl.bintray.com/arrow-kt/arrow-kt/") }
     }
 }
 
@@ -46,19 +45,28 @@ subprojects {
             }
         }
     }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+            freeCompilerArgs = freeCompilerArgs + listOf(
+                "-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi"
+            )
+        }
+    }
 }
 
 tasks.register("clean", Delete::class.java) {
     delete(rootProject.buildDir)
 }
 buildscript {
-    val kotlin_version by extra("1.4.0")
     dependencies {
-        "classpath"("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$NAVIGATION_VERSION")
     }
 }
 
-tasks.withType<DependencyUpdatesTask> {
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
     rejectVersionIf {
         isNonStable(candidate.version)
     }

@@ -1,3 +1,4 @@
+
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
@@ -10,6 +11,7 @@ pluginManagement {
         }
     }
     repositories {
+        maven { setUrl("https://plugins.gradle.org/m2/") }
         gradlePluginPortal()
         google()
         mavenCentral()
@@ -17,7 +19,22 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+include(":home:fake")
+include(":home:public")
+include(":network:fakenasaapi")
+include(":network:fake")
+include(":nasarepository:fake")
+include(":nasarepository")
+include(":di")
+include(":network:nasaapi")
+include(":network:apimodel")
+include(":repository")
+include(":model")
+include(":testing")
+include(":datasource")
+
+
+rootProject.name = "com.gvetri.kotlin.videolibrary"
 
 include(
     "app",

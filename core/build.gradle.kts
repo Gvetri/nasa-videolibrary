@@ -4,7 +4,6 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("kotlin-android-extensions")
-    id("maven-publish")
 }
 
 android {
@@ -39,7 +38,11 @@ android {
     lintOptions {
         isWarningsAsErrors = true
         isAbortOnError = true
-        disable = setOf("VectorPath")
+        disable("VectorPath")
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 

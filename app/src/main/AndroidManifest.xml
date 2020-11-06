@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".NasaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/CoreAppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name="com.gvetri.kotlin.videolibrary.app.MainActivity">
+        <activity
+            android:name="com.gvetri.kotlin.videolibrary.app.MainActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

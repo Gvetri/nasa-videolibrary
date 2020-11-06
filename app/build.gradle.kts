@@ -40,16 +40,23 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
-
     implementation(project(":core"))
     implementation(project(":home"))
+    implementation(project(":di"))
     implementation(project(":download"))
     implementation(project(":settings"))
+    implementation(project(":repository"))
+    implementation(project(":datasource"))
     implementation(project(":network"))
+    implementation(project(":network:nasaapi"))
     implementAndroidDebugLibraries()
     implementAndroidDefaultLibraries()
     implementTestLibraries()

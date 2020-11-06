@@ -4,6 +4,9 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("kotlin-android-extensions")
+    kotlin("kapt")
+    id("kotlin-android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -39,12 +42,33 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
     implementation(project(":core"))
+    implementation(project(":nasarepository"))
+    implementation(project(":di"))
+    implementation(project(":home:public"))
+    implementation(project(":model"))
+    implementation(EXOPLAYER_CORE_LIBRARY)
+    implementation(EXOPLAYER_DASH_LIBRARY)
+    implementation(EXOPLAYER_UI_LIBRARY)
     implementAndroidDefaultLibraries()
     implementTestLibraries()
     implementAndroidTestLibraries()
+    implementation(ARROW_CORE)
+    implementation(COROUTINES)
+    implementation(COIL)
+    kapt(ARROW_SYNTAX)
+    testImplementation(project(":testing"))
+    testImplementation(project(":nasarepository:fake"))
+    testImplementation(project(":network:fake"))
+    testImplementation(project(":home:fake"))
+    testImplementation(COROUTINES_TEST)
+    testImplementation(ANDROIDX_CORE_TESTING)
 }

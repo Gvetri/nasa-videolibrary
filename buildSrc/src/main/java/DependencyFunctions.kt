@@ -4,6 +4,7 @@ const val ANDROID_TEST_IMPLEMENTATION = "androidTestImplementation"
 const val ANDROID_IMPLEMENTATION = "implementation"
 const val ANDROID_DEBUG_IMPLEMENTATION = "debugImplementation"
 const val TEST_IMPLEMENTATION = "testImplementation"
+const val LIBRARY_IMPLEMENTATION = "implementation"
 
 
 fun DependencyHandler.implementAndroidTestLibraries() {
@@ -21,14 +22,20 @@ fun DependencyHandler.implementAndroidDefaultLibraries() {
     add(ANDROID_IMPLEMENTATION, MATERIAL_COMPONENTS_LIBRARY)
     add(ANDROID_IMPLEMENTATION, ANDROIDX_NAVIGATION_FRAGMENT)
     add(ANDROID_IMPLEMENTATION, ANDROIDX_NAVIGATION_UI)
+    add(ANDROID_IMPLEMENTATION, ANDROIDX_LIFECYCLE_JAVA8)
     add(ANDROID_IMPLEMENTATION, LOTTIE_LIBRARY)
     add(ANDROID_IMPLEMENTATION, ANDROIDX_FRAGMENT)
+    add(ANDROID_IMPLEMENTATION, KOIN_VIEWMODEL)
+    add(ANDROID_IMPLEMENTATION, KOIN_FRAGMENT)
+    add(ANDROID_IMPLEMENTATION, KOIN_ANDROID)
 }
 
 fun DependencyHandler.implementTestLibraries() {
     add(TEST_IMPLEMENTATION, JUNIT_LIBRARY)
+    add(TEST_IMPLEMENTATION, TRUTH_LIBRARY)
+    add(TEST_IMPLEMENTATION, KOIN_TEST)
 }
 
-fun DependencyHandler.implementAndroidDebugLibraries(){
-    add(ANDROID_DEBUG_IMPLEMENTATION,FRAGMENT_TESTING_LIBRARY)
+fun DependencyHandler.implementAndroidDebugLibraries() {
+    add(ANDROID_DEBUG_IMPLEMENTATION, FRAGMENT_TESTING_LIBRARY)
 }
