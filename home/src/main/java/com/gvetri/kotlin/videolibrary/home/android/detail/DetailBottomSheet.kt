@@ -42,21 +42,32 @@ class DetailBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             simplePlayer = SimpleExoPlayer.Builder(requireContext()).build()
-            player.player = simplePlayer
+            playerView.player = simplePlayer
             title.text = arguments.title
         }
         viewModel.retrieveVideoUrl(arguments.href)
         viewModel.videoUrlLiveData.observe(viewLifecycleOwner, ::setMediaItem)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        releasePlayer()
+        binding = null
+    }
+
     private fun setMediaItem(url: String) {
-        val uri = Uri.parse(url)
-        val mediaItem: MediaItem = MediaItem.fromUri(uri)
+        val mediaItem: MediaItem = MediaItem.fromUri(url)
         simplePlayer?.apply {
             setMediaItem(mediaItem)
             prepare()
             play()
         }
+    }
+
+
+    private fun releasePlayer() {
+        simplePlayer?.apply { release() }
+        simplePlayer = null
     }
 
     private fun setBottomSheetFullScreen(dialog: Dialog) {
@@ -66,10 +77,5 @@ class DetailBottomSheet : BottomSheetDialogFragment() {
         behavior.peekHeight = resources.displayMetrics.heightPixels
         behavior.isHideable = true
         view?.requestLayout()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
     }
 }
