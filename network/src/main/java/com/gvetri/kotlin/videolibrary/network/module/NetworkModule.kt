@@ -10,6 +10,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.create
+import java.util.concurrent.TimeUnit
 
 const val BASE_URL = "https://images-api.nasa.gov"
 internal const val NASA_API_SERVICE = "NasaApi"
@@ -49,6 +50,7 @@ private fun provideRetrofit(client: OkHttpClient): Retrofit {
 
 private fun provideHttpclient(interceptor: HttpLoggingInterceptor): OkHttpClient = OkHttpClient()
     .newBuilder()
+    .callTimeout(60,TimeUnit.SECONDS)
     .addInterceptor(interceptor)
     .build()
 

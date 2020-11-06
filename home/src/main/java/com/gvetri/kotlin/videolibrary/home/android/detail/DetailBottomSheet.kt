@@ -7,13 +7,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
+import com.gvetri.kotlin.videolibrary.core.repository.Event
+import com.gvetri.kotlin.videolibrary.core.repository.EventObserver
 import com.gvetri.kotlin.videolibrary.home.R
 import com.gvetri.kotlin.videolibrary.home.databinding.FragmentDetailBinding
+import com.gvetri.kotlin.videolibrary.model.error.NasaError
 import org.koin.android.ext.android.inject
 
 
@@ -47,6 +52,16 @@ class DetailBottomSheet : BottomSheetDialogFragment() {
         }
         viewModel.retrieveVideoUrl(arguments.href)
         viewModel.videoUrlLiveData.observe(viewLifecycleOwner, ::setMediaItem)
+        viewModel.errorLiveData.observe(viewLifecycleOwner, EventObserver(::showErrorSnackbar))
+    }
+
+    private fun showErrorSnackbar(nasaError: NasaError) {
+        val errorText = when (nasaError.errorCode) {
+            500 -> getString(R.string.server_error_ocurred)
+            400 -> getString(R.string.error_no_video_found)
+            else -> getString(R.string.general_error_message)
+        }
+        Toast.makeText(context, errorText, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {
