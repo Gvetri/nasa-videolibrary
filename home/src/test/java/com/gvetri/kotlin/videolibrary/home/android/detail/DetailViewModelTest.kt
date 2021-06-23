@@ -2,13 +2,13 @@ package com.gvetri.kotlin.videolibrary.home.android.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import arrow.core.Either
-import com.codingpizza.fake.FakeDetailUseCase
+import com.codingpizza.fake.FakeRetrieveVideoUrlUseCase
 import com.codingpizza.fake.TEST_FAKE_DETAIL_USECASE
 import com.codingpizza.fake.TEST_FAKE_NASA_REPOSITORY
 import com.codingpizza.fake.fakeHomeUseCaseModule
 import com.codingpizza.fake.fakeNasaRepositoryModule
 import com.codingpizza.fake.fakeNetworkNasaApiModule
-import com.codingpizza.homepublic.DetailUseCase
+import com.codingpizza.homepublic.RetrieveVideoUrlUseCase
 import com.google.common.truth.Truth.assertThat
 import com.gvetri.kotlin.videolibrary.core.repository.getOrAwaitValue
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
@@ -45,7 +45,7 @@ class DetailViewModelTest : KoinTest {
 
     private val testDispatcher = TestCoroutineDispatcher()
 
-    private val detailUseCase: DetailUseCase by inject(named(TEST_FAKE_DETAIL_USECASE))
+    private val retrieveVideoUrlUseCase: RetrieveVideoUrlUseCase by inject(named(TEST_FAKE_DETAIL_USECASE))
 
 
     @Before
@@ -63,7 +63,7 @@ class DetailViewModelTest : KoinTest {
     fun `ViewModel should update errorLiveData when there is no video id available`() =
         runBlocking {
             //given
-            val viewModel = DetailViewModel(detailUseCase, testDispatcher)
+            val viewModel = DetailViewModel(retrieveVideoUrlUseCase, testDispatcher)
             //when
             viewModel.retrieveVideoUrl(null)
             //then
@@ -76,7 +76,7 @@ class DetailViewModelTest : KoinTest {
     fun `ViewModel should update videoUrl livedata when the result is successful`() =
         runBlocking {
             //given
-            val viewModel = DetailViewModel(detailUseCase, testDispatcher)
+            val viewModel = DetailViewModel(retrieveVideoUrlUseCase, testDispatcher)
             //when
             val validHref = "validId"
             viewModel.retrieveVideoUrl(validHref)
@@ -92,7 +92,7 @@ class DetailViewModelTest : KoinTest {
     fun `ViewModel should update errorLiveData when there was an error in the execution`() = runBlocking {
 
         //given
-        val detailUseCase = FakeDetailUseCase(fakeNasaRepository = get(named(TEST_FAKE_NASA_REPOSITORY)))
+        val detailUseCase = FakeRetrieveVideoUrlUseCase(fakeNasaRepository = get(named(TEST_FAKE_NASA_REPOSITORY)))
 
         detailUseCase.customExecute = {
             Either.left(NasaError(500, "Server error"))

@@ -1,7 +1,7 @@
 package com.gvetri.kotlin.videolibrary.network.datasource
 
 import arrow.core.Either
-import com.codingpizza.fake.FakeNasaSearchFactory
+import com.codingpizza.fake.FakeNasaSearchGenerator
 import com.codingpizza.fake.TEST_FAKE_NASA_API
 import com.codingpizza.fake.fakeNetworkNasaApiModule
 import com.codingpizza.fakenasaapi.FakeNasaApi
@@ -69,7 +69,7 @@ class NasaNetworkDataSourceTest : KoinTest {
         // given
         val nasaNetworkDataSource = NasaNetworkDataSource(fakeNasaApi)
         fakeNasaApi.retrieveNasaCollectionResponse =
-            Response.success(FakeNasaSearchFactory.obtainNasaSearchModel())
+            Response.success(FakeNasaSearchGenerator.obtainNasaSearchModel())
 
         runBlocking {
             // when

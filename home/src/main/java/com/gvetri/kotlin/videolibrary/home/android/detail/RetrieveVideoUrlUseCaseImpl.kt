@@ -1,18 +1,18 @@
 package com.gvetri.kotlin.videolibrary.home.android.detail
 
 import arrow.core.Either
-import com.codingpizza.homepublic.DetailUseCase
+import com.codingpizza.homepublic.RetrieveVideoUrlUseCase
 import com.codingpizza.nasarepository.NasaRepository
 import com.gvetri.kotlin.videolibrary.model.NasaAssetsResult
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
 
-class DetailUseCaseImpl(private val nasaRepository: NasaRepository) : DetailUseCase {
+class RetrieveVideoUrlUseCaseImpl(private val nasaRepository: NasaRepository) : RetrieveVideoUrlUseCase {
 
     private val noHrefFoundErrorCode = 400
 
     private val noLinkFoundErrorMessage = "No videos available for this id"
 
-    override suspend fun retrieveVideoUrl(href: String): Either<NasaError, String> {
+    override suspend fun execute(href: String): Either<NasaError, String> {
         val assetsResult = nasaRepository.retrieveVideoUrl(href)
         return assetsResult.fold(::ifRight, ::ifLeft)
     }

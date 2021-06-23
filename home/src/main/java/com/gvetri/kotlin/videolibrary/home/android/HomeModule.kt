@@ -1,9 +1,9 @@
 package com.gvetri.kotlin.videolibrary.home.android
 
 import com.codingpizza.di.NASA_REPOSITORY
-import com.codingpizza.homepublic.DetailUseCase
-import com.codingpizza.homepublic.HomeUseCase
-import com.gvetri.kotlin.videolibrary.home.android.detail.DetailUseCaseImpl
+import com.codingpizza.homepublic.RetrieveVideoUrlUseCase
+import com.codingpizza.homepublic.RetrieveNasaCollectionUseCase
+import com.gvetri.kotlin.videolibrary.home.android.detail.RetrieveVideoUrlUseCaseImpl
 import com.gvetri.kotlin.videolibrary.home.android.detail.DetailViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -13,8 +13,8 @@ const val HOME_USECASE = "HomeViewModel"
 const val DETAIL_USECASE = "DetailUseCase"
 
 val homeModule = module {
-    single<HomeUseCase>(named(HOME_USECASE)) {
-        HomeUseCaseImpl(
+    single<RetrieveNasaCollectionUseCase>(named(HOME_USECASE)) {
+        RetrieveNasaCollectionUseCaseImpl(
             nasaRepository = get(
                 named(
                     NASA_REPOSITORY
@@ -23,8 +23,8 @@ val homeModule = module {
         )
     }
 
-    single<DetailUseCase>(named(DETAIL_USECASE)) {
-        DetailUseCaseImpl(
+    single<RetrieveVideoUrlUseCase>(named(DETAIL_USECASE)) {
+        RetrieveVideoUrlUseCaseImpl(
             nasaRepository = get(
                 named(
                     NASA_REPOSITORY
@@ -33,6 +33,6 @@ val homeModule = module {
         )
     }
 
-    viewModel { HomeViewModel(homeUseCase = get(named(HOME_USECASE))) }
-    viewModel { DetailViewModel(detailUseCase = get(named(DETAIL_USECASE))) }
+    viewModel { HomeViewModel(retrieveNasaCollectionUseCase = get(named(HOME_USECASE))) }
+    viewModel { DetailViewModel(retrieveVideoUrlUseCase = get(named(DETAIL_USECASE))) }
 }

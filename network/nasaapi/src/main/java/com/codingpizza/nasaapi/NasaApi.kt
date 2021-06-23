@@ -1,6 +1,5 @@
 package com.codingpizza.nasaapi
 
-import com.codingpizza.apimodel.NasaAssetsApiModel
 import com.codingpizza.apimodel.NasaSearchApiModel
 import retrofit2.Response
 import retrofit2.http.GET

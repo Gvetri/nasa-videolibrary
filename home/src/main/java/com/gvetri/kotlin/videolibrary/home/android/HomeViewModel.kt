@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.Either
-import com.codingpizza.homepublic.HomeUseCase
+import com.codingpizza.homepublic.RetrieveNasaCollectionUseCase
 import com.gvetri.kotlin.videolibrary.core.LoadingState
 import com.gvetri.kotlin.videolibrary.core.repository.Event
 import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val homeUseCase: HomeUseCase,
+    private val retrieveNasaCollectionUseCase: RetrieveNasaCollectionUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ViewModel() {
 
@@ -33,7 +33,7 @@ class HomeViewModel(
     private fun retrieveNasaCollection() {
         viewModelScope.launch(dispatcher) {
             _loadingLiveData.value = Event(LoadingState.Loading)
-            when (val result = homeUseCase.retrieveNasaCollection()) {
+            when (val result = retrieveNasaCollectionUseCase.execute()) {
                 is Either.Right -> {
                     _loadingLiveData.value = Event(LoadingState.NotLoading)
                     _nasaLiveData.value = result.b

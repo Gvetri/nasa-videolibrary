@@ -5,7 +5,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @Suppress("MaxLineLength")
-object FakeNasaSearchFactory {
+object FakeNasaSearchGenerator {
     private val nasaDefaultJson =
         """
         {

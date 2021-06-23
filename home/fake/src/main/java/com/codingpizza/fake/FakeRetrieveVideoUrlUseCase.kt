@@ -1,18 +1,16 @@
 package com.codingpizza.fake
 
 import arrow.core.Either
-import arrow.core.extensions.andthen.functor.mapConst
-import arrow.core.extensions.list.functor.mapConst
-import com.codingpizza.homepublic.DetailUseCase
+import com.codingpizza.homepublic.RetrieveVideoUrlUseCase
 import com.codingpizza.nasarepository.NasaRepository
 import com.gvetri.kotlin.videolibrary.model.NasaAssetsResult
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
 
-class FakeDetailUseCase(private val fakeNasaRepository: NasaRepository) : DetailUseCase {
+class FakeRetrieveVideoUrlUseCase(private val fakeNasaRepository: NasaRepository) : RetrieveVideoUrlUseCase {
 
     var customExecute: (() -> Either<NasaError, String>)? = null
 
-    override suspend fun retrieveVideoUrl(href: String): Either<NasaError, String> {
+    override suspend fun execute(href: String): Either<NasaError, String> {
         return if (customExecute == null) {
             val assetsResult = fakeNasaRepository.retrieveVideoUrl(href)
             return assetsResult.fold(::ifRight, ::ifLeft)

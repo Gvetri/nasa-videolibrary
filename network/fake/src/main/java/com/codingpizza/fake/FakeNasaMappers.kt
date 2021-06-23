@@ -1,14 +1,7 @@
 package com.codingpizza.fake
 
-import com.codingpizza.apimodel.NasaAssetsApiModel
 import com.codingpizza.apimodel.NasaSearchApiModel
-import com.gvetri.kotlin.videolibrary.model.NasaAssetsResult
-import com.gvetri.kotlin.videolibrary.model.NasaData
-import com.gvetri.kotlin.videolibrary.model.NasaFileRelation
-import com.gvetri.kotlin.videolibrary.model.NasaLinkModel
-import com.gvetri.kotlin.videolibrary.model.NasaMediatype
-import com.gvetri.kotlin.videolibrary.model.NasaResultItem
-import com.gvetri.kotlin.videolibrary.model.NasaSearchResult
+import com.gvetri.kotlin.videolibrary.model.*
 
 fun nasaSearchResultMapper(apiModel: NasaSearchApiModel?): NasaSearchResult {
     return apiModel.let {

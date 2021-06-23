@@ -2,13 +2,13 @@ package com.gvetri.kotlin.videolibrary.home.android
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import arrow.core.Either
-import com.codingpizza.fake.FakeHomeUseCase
+import com.codingpizza.fake.FakeRetrieveNasaCollectionUseCase
 import com.codingpizza.fake.TEST_FAKE_HOME_USECASE
 import com.codingpizza.fake.TEST_FAKE_NASA_REPOSITORY
 import com.codingpizza.fake.fakeHomeUseCaseModule
 import com.codingpizza.fake.fakeNasaRepositoryModule
 import com.codingpizza.fake.fakeNetworkNasaApiModule
-import com.codingpizza.homepublic.HomeUseCase
+import com.codingpizza.homepublic.RetrieveNasaCollectionUseCase
 import com.google.common.truth.Truth.assertThat
 import com.gvetri.kotlin.videolibrary.core.LoadingState
 import com.gvetri.kotlin.videolibrary.core.repository.getOrAwaitValue
@@ -48,7 +48,7 @@ class HomeViewModelTest : KoinTest {
         )
     }
 
-    private val fakeUseCase: HomeUseCase by inject(named(TEST_FAKE_HOME_USECASE))
+    private val fakeUseCase: RetrieveNasaCollectionUseCase by inject(named(TEST_FAKE_HOME_USECASE))
     private val nasaSearchResult = generateNasaSearchResult()
     private val testDispatcher = TestCoroutineDispatcher()
 
@@ -98,7 +98,7 @@ class HomeViewModelTest : KoinTest {
             val nasaError = NasaError(errorCode, errorMessage)
             val customExecute = { Either.left(nasaError) }
             val fakeUseCase =
-                FakeHomeUseCase(fakeNasaRepository = get(named(TEST_FAKE_NASA_REPOSITORY)))
+                FakeRetrieveNasaCollectionUseCase(fakeNasaRepository = get(named(TEST_FAKE_NASA_REPOSITORY)))
             fakeUseCase.customResponse = customExecute
 
             val viewModel = HomeViewModel(fakeUseCase, testDispatcher)

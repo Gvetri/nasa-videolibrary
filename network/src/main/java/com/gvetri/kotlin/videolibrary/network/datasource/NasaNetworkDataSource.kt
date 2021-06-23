@@ -1,7 +1,6 @@
 package com.gvetri.kotlin.videolibrary.network.datasource
 
 import arrow.core.Either
-import com.codingpizza.apimodel.NasaAssetsApiModel
 import com.codingpizza.apimodel.NasaSearchApiModel
 import com.codingpizza.nasaapi.NasaApi
 import com.gvetri.kotlin.videolibrary.datasource.NasaDataSource

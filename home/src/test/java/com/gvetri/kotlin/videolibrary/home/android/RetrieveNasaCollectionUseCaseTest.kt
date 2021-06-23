@@ -15,7 +15,7 @@ import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
 import org.koin.test.inject
 
-class HomeUseCaseTest : KoinTest {
+class RetrieveNasaCollectionUseCaseTest : KoinTest {
 
     @get:Rule
     val nasaKoinTestRule = KoinTestRule.create {
@@ -32,10 +32,10 @@ class HomeUseCaseTest : KoinTest {
     fun `Usecase should call the repository and return a value`() {
         runBlocking {
             // given
-            val homeUseCase = HomeUseCaseImpl(fakeNasaRepository)
+            val homeUseCase = RetrieveNasaCollectionUseCaseImpl(fakeNasaRepository)
 
             // when
-            val actual = homeUseCase.retrieveNasaCollection()
+            val actual = homeUseCase.execute()
 
             // then
             val expectedValue = nasaSearchResult

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codingpizza.homepublic.DetailUseCase
+import com.codingpizza.homepublic.RetrieveVideoUrlUseCase
 import com.gvetri.kotlin.videolibrary.core.repository.Event
 import com.gvetri.kotlin.videolibrary.model.error.NasaError
 import kotlinx.coroutines.CoroutineDispatcher
@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    private val detailUseCase: DetailUseCase,
+    private val retrieveVideoUrlUseCase: RetrieveVideoUrlUseCase,
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) :
     ViewModel() {
@@ -32,7 +32,7 @@ class DetailViewModel(
                 Event(NasaError(noHrefErrorCode, noHrefErrorMessage))
         } else {
             viewModelScope.launch(dispatcher) {
-                val response = detailUseCase.retrieveVideoUrl(href)
+                val response = retrieveVideoUrlUseCase.execute(href)
                 response.fold(::onCallFailed, ::onCallSuccessful)
             }
         }
